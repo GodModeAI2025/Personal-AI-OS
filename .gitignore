@@ -1,0 +1,18 @@
+# OS-Dateien
+.DS_Store
+Thumbs.db
+
+# Editor-Dateien
+*.swp
+*.swo
+*~
+
+# Obsidian (falls jemand es doch nutzt)
+.obsidian/
+
+# Node (falls Scripts hinzugefügt werden)
+node_modules/
+
+# Temporäre Dateien
+*.tmp
+*.bak
