@@ -1,6 +1,12 @@
 # Grok Setup: Personal-AI-OS
 
-Wenn Grok keine klassischen Projektdateien oder Knowledge-Uploads anbietet, nutzt du die **Custom Instructions** als kompakten Kontext-Snapshot.
+Wenn Grok keinen Live-Connector, keine API-Anbindung und keine klassischen Projektdateien anbietet, nutzt du die **Custom Instructions** als kompakten Kontext-Snapshot.
+
+Aktuellen Snapshot erzeugen:
+
+```bash
+node tools/memory-server/bin/paios-memory.js context --profile grok --write
+```
 
 ## Schritt-für-Schritt Installation
 
@@ -40,4 +46,4 @@ Kern-Verhalten:
    - Speichere die Einstellungen.
 
 ## Nutzung im Alltag
-Grok wird diese Anweisungen nun bei **jedem** neuen Chat automatisch im Hintergrund berücksichtigen. Wenn sich deine Ziele oder deine Identität ändern, musst du diese Custom Instructions in den Einstellungen manuell aktualisieren.
+Grok wird diese Anweisungen nun bei neuen Chats berücksichtigen. Wenn sich deine Ziele, deine Identität oder `MEMORY.md` ändern, erzeuge einen neuen Snapshot und aktualisiere die Custom Instructions.

@@ -1,6 +1,12 @@
 # ChatGPT Setup: Personal-AI-OS
 
-Um ChatGPT mit deinem Personal-AI-OS zu verbinden, nutzen wir die **Custom GPT** Funktion. Das ist ein Knowledge-Snapshot: Wenn sich deine lokalen Kontextdateien ändern, musst du sie im GPT aktualisieren.
+Um ChatGPT mit deinem Personal-AI-OS zu verbinden, nutzt du entweder einen Live-Connector/API-Zugriff oder die **Custom GPT** Funktion als Knowledge-Snapshot. Wenn dein ChatGPT-Setup keinen Live-Zugriff auf den lokalen Memory-Server erlaubt, musst du den Snapshot aktualisieren.
+
+Aktuellen Snapshot erzeugen:
+
+```bash
+node tools/memory-server/bin/paios-memory.js context --profile chatgpt --write
+```
 
 ## Schritt-für-Schritt Installation
 
@@ -11,7 +17,7 @@ Um ChatGPT mit deinem Personal-AI-OS zu verbinden, nutzen wir die **Custom GPT**
 
 2. **Grunddaten ausfüllen**:
    - **Name**: `Personal-AI-OS`
-   - **Description**: `Mein digitales Arbeitsgedächtnis und Thinking Partner.`
+   - **Description**: `Lokales Personal-AI-OS: Markdown-Memory, Kontext-Snapshots und Thinking Partner.`
 
 3. **Wissensbasis (Knowledge) hochladen**:
    - Scrolle nach unten zum Bereich **"Knowledge"**.
@@ -57,4 +63,4 @@ Kern-Verhalten:
    - Wähle "Only me" (Nur für mich sichtbar).
 
 ## Nutzung im Alltag
-Pinne diesen Custom GPT in deiner Seitenleiste an. Starte alle wichtigen Chats über diesen GPT. Wenn sich deine Ziele (`GOALS.md`) oder deine Identität (`IDENTITY.md`) ändern, gehe einfach in die Einstellungen des GPTs, lösche die alte Datei unter "Knowledge" und lade die neue hoch.
+Pinne diesen Custom GPT in deiner Seitenleiste an. Starte alle wichtigen Chats über diesen GPT. Wenn sich deine Ziele (`GOALS.md`), deine Identität (`IDENTITY.md`) oder `MEMORY.md` ändern, erzeuge einen neuen Snapshot und lade ihn in der Knowledge Base hoch.

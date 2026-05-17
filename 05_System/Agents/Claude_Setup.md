@@ -1,6 +1,12 @@
 # Claude Setup: Personal-AI-OS
 
-Claude bietet mit der Funktion **"Projects"** (verfügbar in den Pro- und Team-Plänen) die beste native Unterstützung für ein Personal-AI-OS. Claude Projects behalten den Kontext über alle Chats hinweg bei.
+Claude kann das Personal-AI-OS auf zwei Arten nutzen: als **Project Knowledge** Snapshot oder, in MCP-fähigen lokalen Setups, per Live-Zugriff auf den Memory-Server. Project Knowledge ist praktisch, aber kein automatischer Live-Sync.
+
+MCP-Snippet erzeugen:
+
+```bash
+node tools/memory-server/bin/paios-memory.js init
+```
 
 ## Schritt-für-Schritt Installation
 
@@ -54,4 +60,4 @@ Kern-Verhalten:
    - Klicke auf das Stern-Symbol (Star) neben dem Projektnamen, damit es immer ganz oben in deiner Seitenleiste bleibt.
 
 ## Nutzung im Alltag
-Starte alle neuen Konversationen innerhalb dieses Projekts. Claude wird automatisch bei jeder Antwort deine Werte, Ziele und Prioritäten berücksichtigen. Wenn du deine lokalen Markdown-Dateien aktualisierst, lösche einfach die alte Version im "Project Knowledge" und lade die neue hoch.
+Starte alle neuen Konversationen innerhalb dieses Projekts. Wenn du Project Knowledge nutzt und deine lokalen Markdown-Dateien aktualisierst, lösche die alte Version im "Project Knowledge" und lade die neue hoch. Wenn dein Claude-Setup MCP nutzt, greift Claude live über `memory_search`, `memory_context` und `memory_remember` auf die lokale Memory-Schicht zu.

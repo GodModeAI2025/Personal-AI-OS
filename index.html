@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal-AI-OS | Dein digitales Arbeitsgedächtnis</title>
+    <title>Personal-AI-OS | Lokales KI-Memory</title>
     <style>
         :root {
             --bg-color: #f9fafb;
@@ -152,7 +152,7 @@
     <div class="container">
         <header>
             <h1>Personal-AI-OS</h1>
-            <p class="subtitle">Ein toolunabhängiges, Markdown-basiertes Personal Operating System. Dein zentraler Wissensspeicher und das "Arbeitsgedächtnis" für dich und deine KI-Agenten.</p>
+            <p class="subtitle">Ein macOS-first, Markdown-basiertes Personal Operating System mit lokalem Memory-Server, MCP-Zugriff und Kontext-Snapshots für KI-Agenten.</p>
             <a href="https://github.com/GodModeAI2025/Personal-AI-OS" class="btn">View on GitHub</a>
         </header>
 
@@ -163,7 +163,13 @@
         <div class="card">
             <h2>Das Problem mit KI heute</h2>
             <p>Herkömmliche KI-Chats starten immer bei null. Sie kennen deine Projekte, deine Ziele und deine Arbeitsweise nicht. Du musst jedes Mal von vorne erklären, wer du bist und was du brauchst.</p>
-            <p><strong>Die Lösung:</strong> Dieses Personal-AI-OS zieht eine versionierte Kontext-Schicht ein. Je nach KI nutzt du direkten Projektzugriff oder regelmäßig aktualisierte Knowledge-Snapshots.</p>
+            <p><strong>Die Lösung:</strong> Dieses Personal-AI-OS zieht eine versionierte Kontext-Schicht ein. Je nach KI nutzt du direkten Projektzugriff, den lokalen Memory-Server/MCP oder regelmäßig aktualisierte Knowledge-Snapshots.</p>
+        </div>
+
+        <div class="card">
+            <h2>Memory-Infrastruktur</h2>
+            <p>Der macOS-Server indiziert deine Markdown-Dateien lokal, stellt Suche und Kontext über HTTP auf <code>127.0.0.1:47777</code> bereit und bietet MCP-Tools für Live-Zugriff in kompatiblen Agenten.</p>
+            <p>Für Tools ohne Live-Schnittstelle erzeugt er aktuelle Snapshots für ChatGPT, Claude, Gemini oder Grok.</p>
         </div>
 
         <h2>Kernfunktionen</h2>
@@ -173,16 +179,20 @@
                 <p>Trennung zwischen flüchtigem Active Memory (Tasks) und konsolidiertem Langzeitgedächtnis (Memory.md), inspiriert von OpenClaw.</p>
             </div>
             <div class="feature-item">
+                <h3>⚙️ Local Memory Server</h3>
+                <p>macOS-Daemon mit Datei-Watcher, lokalem Index, HTTP-API, MCP-stdio und defensivem Git-Sync für private Repositories.</p>
+            </div>
+            <div class="feature-item">
                 <h3>🔍 Knowledge Distiller</h3>
                 <p>Verwandelt statische PDFs aus dem Read-Only Documents-Ordner in strukturierte, vernetzte Wissensgraphen.</p>
             </div>
             <div class="feature-item">
                 <h3>🛡️ Triage & Provenance</h3>
-                <p>Schützt vor Vault Bloat durch automatische Filter. Jede Erkenntnis erhält Source-ID, Locator, Beleg, Konfidenz und Ableitungsart.</p>
+                <p>Schützt vor Vault Bloat durch strukturierte Filter. Jede Erkenntnis erhält Source-ID, Locator, Beleg, Konfidenz und Ableitungsart.</p>
             </div>
             <div class="feature-item">
                 <h3>🔄 Lern-Loop</h3>
-                <p>Wenn die KI einen Fehler macht, speichert sie die Korrektur in LEARNINGS.md und macht ihn nie wieder.</p>
+                <p>Wenn die KI korrigiert wird, kann sie die Korrektur in LEARNINGS.md speichern und Wiederholungsfehler reduzieren.</p>
             </div>
         </div>
 
@@ -202,6 +212,7 @@
         <footer>
             <p>Inspiriert von Tiago Forte (Building a Second Brain), Andrej Karpathy, dem Obsilo-Framework und OpenClaw.</p>
             <p><a href="https://github.com/GodModeAI2025/Personal-AI-OS/blob/master/PRIVACY.md">Privacy Model</a></p>
+            <p><a href="https://github.com/GodModeAI2025/Personal-AI-OS/blob/master/05_System/Memory/README.md">Memory Infrastructure</a></p>
             <p><a href="https://godmodeai2025.github.io/MarkZimmermann/">Impressum</a></p>
         </footer>
     </div>

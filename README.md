@@ -1,14 +1,14 @@
 # Personal-AI-OS
 
-Ein toolunabhängiges, Markdown-basiertes Personal Operating System. Es dient als zentraler Wissensspeicher und als "Arbeitsgedächtnis" für dich und deine KI-Agenten (Manus, OpenAI/ChatGPT, Gemini, Anthropic/Claude, Grok).
+Ein macOS-first, Markdown-basiertes Personal Operating System mit lokaler Memory-Infrastruktur. Es dient als zentraler Wissensspeicher und als "Arbeitsgedächtnis" für dich und deine KI-Agenten (Manus, OpenAI/ChatGPT, Gemini, Anthropic/Claude, Grok).
 
-Dieses System basiert auf den neuesten Erkenntnissen des Personal Knowledge Managements (PKM), der Kognitionsforschung (Cognitive Offloading) und der PARA-Methode [1] [2]. Es integriert zudem fortschrittliche Konzepte wie **Block-Level Provenance**, **Triage-Filter** und **Memory-Schichten**, inspiriert von Andrej Karpathy, dem Obsilo-Framework und OpenClaw [5] [6] [7].
+Dieses System orientiert sich an Personal Knowledge Management (PKM), Kognitionsforschung (Cognitive Offloading) und der PARA-Methode [1] [2]. Es integriert zudem **Block-Level Provenance**, **Triage-Filter**, **Memory-Schichten** und einen lokalen **Memory-Server** für Suche, Kontext-Snapshots und MCP-Zugriff.
 
 ## Warum dieses System?
 
 Herkömmliche KI-Chats starten immer bei null. Sie kennen deine Projekte, deine Ziele und deine Arbeitsweise nicht. Dieses Personal-AI-OS löst das Problem, indem es eine **wiederverwendbare Kontext-Schicht** einzieht.
 
-Je nach Tool passiert das entweder über direkten Zugriff auf diesen Ordner oder über regelmäßig aktualisierte Knowledge-Snapshots. Die wichtige Entscheidung: Dein Kontext liegt nicht verstreut in einzelnen Chats, sondern in einer versionierten, wiederverwendbaren Markdown-Struktur.
+Je nach Tool passiert das entweder über direkten Zugriff auf diesen Ordner, über den lokalen Memory-Server/MCP oder über regelmäßig aktualisierte Knowledge-Snapshots. Die wichtige Entscheidung: Dein Kontext liegt nicht verstreut in einzelnen Chats, sondern in einer versionierten, wiederverwendbaren Markdown-Struktur.
 
 > **Privacy-Hinweis:** Dieses öffentliche Repository ist ein Template. Echte persönliche Inhalte gehören in ein privates Repo oder einen lokalen verschlüsselten Ordner. Details stehen in `PRIVACY.md`.
 
@@ -24,6 +24,28 @@ Das System ist in sieben Bereiche unterteilt:
 6. **`05_System/`**: Systemkontext, Workflows, Templates und Agent-Setup-Anleitungen.
 7. **`06_Documents/`**: **READ-ONLY**. Manuell eingepflegtes Spezialwissen (PDFs, Bücher, Studien). Die KI darf hier lesen, aber niemals schreiben.
 
+## Lokale Memory-Infrastruktur
+
+Der Ordner `tools/memory-server/` enthält eine dependency-freie Node.js CLI für macOS:
+
+- lokaler Markdown-Index in `.paios-memory/index.json`,
+- HTTP-Server auf `127.0.0.1:47777`,
+- MCP-stdio-Server für Tools mit Live-Toolzugriff,
+- Snapshot-Export für ChatGPT, Claude, Gemini und Grok,
+- defensiver Git-Sync für private Repositories.
+
+Schnellstart:
+
+```bash
+node tools/memory-server/bin/paios-memory.js init
+node tools/memory-server/bin/paios-memory.js index
+node tools/memory-server/bin/paios-memory.js search "aktuelles Ziel"
+node tools/memory-server/bin/paios-memory.js context --profile chatgpt --write
+node tools/memory-server/bin/paios-memory.js serve
+```
+
+Details stehen in `05_System/Memory/README.md`.
+
 ## Das "Gehirn" anpassen (`05_System/Context/`)
 
 Damit das System für dich arbeitet, musst du diese Dateien initial ausfüllen:
@@ -38,7 +60,7 @@ Die Dateien `MEMORY.md` (Langzeitgedächtnis) und `LEARNINGS.md` (Fehler-Log) we
 
 ## KI-Systeme installieren
 
-Im Ordner `05_System/Agents/` findest du Schritt-für-Schritt-Anleitungen, wie du das Personal-AI-OS in deiner bevorzugten KI nutzt. Wichtig: Bei Tools ohne echten Dateisystemzugriff musst du Kontextdateien manuell aktualisieren oder neu hochladen.
+Im Ordner `05_System/Agents/` findest du Schritt-für-Schritt-Anleitungen, wie du das Personal-AI-OS in deiner bevorzugten KI nutzt. Wichtig: Bei Tools ohne echten Dateisystem-, MCP- oder API-Zugriff musst du Kontextdateien manuell aktualisieren oder neu hochladen.
 
 - **Manus**: Über die "Projects" Funktion (siehe `Manus_Setup.md`)
 - **ChatGPT**: Über einen "Custom GPT" (siehe `ChatGPT_Setup.md`)
@@ -53,7 +75,8 @@ Dieses Repo ist öffentlich sichtbar und eignet sich als Template, Landingpage u
 1. ein privates Repo erstellen,
 2. diese Struktur dorthin kopieren,
 3. erst dort persönliche Inhalte eintragen,
-4. vor jedem Push prüfen, ob keine privaten Daten versehentlich öffentlich werden.
+4. `.paios-memory/` lokal lassen,
+5. vor jedem Push prüfen, ob keine privaten Daten versehentlich öffentlich werden.
 
 ## Die Workflows nutzen
 Das System enthält vordefinierte Workflows in `05_System/Workflows/`. Du kannst die KI einfach triggern:
@@ -71,6 +94,7 @@ Dieses System nutzt zentrale Konzepte der Kognitionsforschung und des modernen W
 - **Cognitive Offloading**: Dein Gehirn ist zum Denken da, nicht zum Speichern. Indem du alles in dieses System auslagerst, reduzierst du deinen mentalen Load [3].
 - **Block-Level Provenance**: Jede Erkenntnis im System bekommt Source-ID, Locator, kurzen Beleg, Konfidenz und Ableitungsart. Das verhindert, dass Zusammenfassungsfehler über die Zeit zur "Wahrheit" werden [6].
 - **Memory-Schichten**: Trennung zwischen flüchtigem Active Memory (`TASKS.md`) und konsolidiertem Langzeitgedächtnis (`MEMORY.md`), inspiriert von OpenClaw [7].
+- **Memory-Server**: Lokaler macOS-Daemon, der Markdown indiziert, Live-Suche anbietet und MCP-Tools bereitstellt.
 - **Dialog statt Summary**: Quellen werden nicht einfach blind zusammengefasst, sondern im Dialog mit der KI auf deine spezifischen Projekte hin extrahiert [6].
 
 ---

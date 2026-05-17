@@ -1,0 +1,21 @@
+{
+  "name": "@personal-ai-os/memory-server",
+  "version": "0.1.0",
+  "description": "macOS-first local Memory server for Personal-AI-OS: Markdown index, MCP tools, snapshots and private Git sync.",
+  "type": "module",
+  "bin": {
+    "paios-memory": "./bin/paios-memory.js"
+  },
+  "scripts": {
+    "doctor": "node ./bin/paios-memory.js doctor",
+    "index": "node ./bin/paios-memory.js index",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "os": [
+    "darwin"
+  ],
+  "license": "MIT"
+}

@@ -1,6 +1,12 @@
 # Manus Setup: Personal-AI-OS
 
-Manus bietet mit der Funktion **"Projects"** eine gute Möglichkeit, dein Personal-AI-OS als Projektkontext zu nutzen. Einmal eingerichtet, startet jede neue Aufgabe in diesem Projekt mit dem hochgeladenen Kontext.
+Manus bietet mit der Funktion **"Projects"** eine gute Möglichkeit, dein Personal-AI-OS als Projektkontext zu nutzen. Wenn Manus zusätzlich Terminal- oder Dateizugriff auf deine private Kopie hat, kann es die lokale Memory-CLI nutzen; sonst arbeitet es mit einem Projekt-Snapshot.
+
+Aktuellen Snapshot erzeugen:
+
+```bash
+node tools/memory-server/bin/paios-memory.js context --profile default --write
+```
 
 ## Schritt-für-Schritt Installation
 

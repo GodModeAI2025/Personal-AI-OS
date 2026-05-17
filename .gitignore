@@ -13,6 +13,9 @@ Thumbs.db
 # Node (falls Scripts hinzugefügt werden)
 node_modules/
 
+# Lokaler Memory-Index, Snapshots, Logs und Connector-Snippets
+.paios-memory/
+
 # Temporäre Dateien
 *.tmp
 *.bak

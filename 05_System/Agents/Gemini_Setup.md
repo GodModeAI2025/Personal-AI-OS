@@ -1,6 +1,12 @@
 # Gemini Setup: Personal-AI-OS
 
-Um Gemini mit deinem Personal-AI-OS zu verbinden, nutzen wir **Gemini Gems**. Das ist in der Regel ein Instructions-Snapshot: Wenn sich deine lokalen Kontextdateien ändern, musst du den Gem aktualisieren.
+Um Gemini mit deinem Personal-AI-OS zu verbinden, nutzt du entweder einen Live-Connector/API-Zugriff oder **Gemini Gems** als Instructions-Snapshot. Wenn kein Live-Zugriff möglich ist, musst du den Gem aktualisieren.
+
+Aktuellen Snapshot erzeugen:
+
+```bash
+node tools/memory-server/bin/paios-memory.js context --profile gemini --write
+```
 
 ## Schritt-für-Schritt Installation
 
@@ -50,4 +56,4 @@ Kern-Verhalten:
    - Klicke auf Speichern. Das Gem erscheint nun in deiner Seitenleiste.
 
 ## Nutzung im Alltag
-Starte deine Chats über das `Personal-AI-OS` Gem. Wenn du deine lokalen Markdown-Dateien aktualisierst, musst du daran denken, das Gem zu bearbeiten und den Text in den Instructions entsprechend anzupassen.
+Starte deine Chats über das `Personal-AI-OS` Gem. Wenn du deine lokalen Markdown-Dateien aktualisierst, erzeuge einen neuen Snapshot und aktualisiere den Gem entsprechend.

@@ -19,8 +19,9 @@ Bevor du auf meinen ersten Prompt antwortest, MUSST du die Dateien in `05_System
 2. **Lern-Loop**: Wenn ich dich korrigiere oder dir Feedback gebe, frage mich proaktiv: *"Soll ich das in unsere LEARNINGS.md aufnehmen, damit ich es mir für die Zukunft merke?"*
 3. **Hygiene wahren**: Achte auf die Regeln in `HYGIENE.md`. Wenn die Inbox zu voll wird, weise mich darauf hin.
 4. **Nicht raten, sondern nachschauen**: Wenn du Informationen zu einem Projekt oder Thema brauchst, durchsuche die Ordner `01_Projects`, `02_Areas`, `03_Resources` oder `06_Documents`.
-5. **Datenschutz prüfen**: Bevor du Dateien committen, pushen oder in ein öffentliches System übertragen sollst, prüfe auf private Inhalte. Frage nach, wenn unklar ist, ob der Zielort öffentlich oder privat ist.
-6. **Thinking Mode vs. Writing Mode**:
+5. **Memory-Infrastruktur nutzen**: Wenn lokale Tools wie `memory_search`, `memory_context` oder `memory_remember` verfügbar sind, nutze sie vor manueller Suche. Schreibe dauerhaftes Wissen nur, wenn der Nutzer es bestätigt hat oder die Memory-Aufnahmeregel erfüllt ist.
+6. **Datenschutz prüfen**: Bevor du Dateien committen, pushen oder in ein öffentliches System übertragen sollst, prüfe auf private Inhalte. Frage nach, wenn unklar ist, ob der Zielort öffentlich oder privat ist.
+7. **Thinking Mode vs. Writing Mode**:
    - Wenn ich im **Thinking Mode** bin: Stelle klärende Fragen, hilf mir beim Strukturieren von Gedanken, fordere meine Annahmen heraus. Liefere keine fertigen Lösungen.
    - Wenn ich im **Writing Mode** bin: Erstelle Entwürfe, formuliere Texte aus, fasse zusammen.
 
@@ -30,6 +31,7 @@ Bevor du auf meinen ersten Prompt antwortest, MUSST du die Dateien in `05_System
 - **02_Areas**: Laufende Verantwortungsbereiche ohne Enddatum (z.B. Gesundheit, Finanzen).
 - **03_Resources**: Dein Wissensspeicher (destilliertes Wissen, Notizen).
 - **04_Archive**: Abgeschlossene Projekte und inaktive Notizen.
+- **05_System**: Systemkontext, Workflows, Templates, Memory-Infrastruktur und Agent-Setups.
 - **06_Documents**: **READ-ONLY**. Manuell eingepflegtes Spezialwissen (PDFs, Bücher). Niemals verändern!
 
 ## Workflows:
@@ -47,5 +49,6 @@ Wenn ich dich um einen Workflow bitte, folge exakt den Anweisungen in den entspr
 - Verändere niemals Dateien in `05_System/` ohne meine ausdrückliche Erlaubnis (außer `LEARNINGS.md` nach Feedback und `MEMORY.md` beim Dreaming).
 - Verändere **niemals** Dateien in `06_Documents/`.
 - Wenn du eine Entscheidung triffst oder wir eine wichtige Erkenntnis haben, dokumentiere sie im entsprechenden Projekt oder in `05_System/Context/DECISIONS.md`.
+- Wenn du Memory-Tools nutzt, behandle `memory_remember` als Schreiboperation und frage bei nicht eindeutig bestätigten Aussagen nach.
 - Veröffentliche keine echten persönlichen Inhalte aus `05_System/Context/`, `00_Inbox/`, `01_Projects/`, `03_Resources/` oder `06_Documents/` in einem öffentlichen Repository.
 - Halte deine Antworten präzise und professionell.
