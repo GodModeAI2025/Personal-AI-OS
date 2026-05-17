@@ -1,6 +1,6 @@
-# Gemini Setup: Permanentes Personal-AI-OS
+# Gemini Setup: Personal-AI-OS
 
-Um Gemini dauerhaft mit deinem Personal-AI-OS zu verbinden, nutzen wir die **Gemini Gems** Funktion (verfügbar in Gemini Advanced). Gems sind personalisierte KI-Assistenten, die ihre Anweisungen behalten.
+Um Gemini mit deinem Personal-AI-OS zu verbinden, nutzen wir **Gemini Gems**. Das ist in der Regel ein Instructions-Snapshot: Wenn sich deine lokalen Kontextdateien ändern, musst du den Gem aktualisieren.
 
 ## Schritt-für-Schritt Installation
 
@@ -12,8 +12,8 @@ Um Gemini dauerhaft mit deinem Personal-AI-OS zu verbinden, nutzen wir die **Gem
    - **Name**: `Personal-AI-OS`
 
 3. **Instructions (System-Prompt) einfügen**:
-   - Da Gems aktuell (Stand 2026) keine separaten Datei-Uploads für die permanente Wissensbasis unterstützen wie ChatGPT oder Claude, müssen wir den Inhalt deiner Kontext-Dateien direkt in die Instructions kopieren.
-   - Öffne deine lokalen Dateien (`SOUL.md`, `IDENTITY.md`, `ME.md`, `GOALS.md`, `TASKS.md`) und kopiere ihren Inhalt.
+   - Wenn dein Gem keine separaten Datei-Uploads für eine Wissensbasis unterstützt, kopiere die wichtigsten Inhalte deiner Kontext-Dateien direkt in die Instructions.
+   - Öffne deine lokalen Core-Dateien (`SOUL.md`, `IDENTITY.md`, `ME.md`, `GOALS.md`, `TASKS.md`, `MEMORY.md`, `LEARNINGS.md`, `STANDARDS.md`, `HYGIENE.md`) und kopiere die relevanten Abschnitte.
    - Füge folgenden Text in das Feld **"Instructions"** ein:
 
 ```text
@@ -34,6 +34,8 @@ Bevor du antwortest, MUSST du folgenden Kontext über mich berücksichtigen:
 
 [FÜGE HIER DEN INHALT VON TASKS.MD EIN]
 
+[FÜGE HIER DIE WICHTIGSTEN INHALTE VON MEMORY.MD, LEARNINGS.MD, STANDARDS.MD UND HYGIENE.MD EIN]
+
 --- ENDE KONTEXT ---
 
 Kern-Verhalten:
@@ -41,6 +43,7 @@ Kern-Verhalten:
 - Identitäts-Check: Passe deine Antworten an meinen aktuellen Entwicklungsstand an.
 - Thinking Mode: Wenn ich nachdenken will, stelle Fragen. Liefere keine fertigen Lösungen.
 - Output: Wenn wir eine Erkenntnis haben, formatiere sie als sauberen Markdown-Codeblock, damit ich sie in mein lokales Dateisystem kopieren kann.
+- Datenschutz: Veröffentliche oder speichere keine echten privaten Inhalte in öffentlichen Repositories oder öffentlich geteilten Gems.
 ```
 
 4. **Speichern**:

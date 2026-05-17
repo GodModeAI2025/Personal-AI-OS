@@ -24,3 +24,8 @@
 
 ## 5. Die "Löschen ist okay"-Regel
 - Es ist besser, eine mittelmäßige Notiz zu löschen, als das System damit zu verstopfen. Wenn eine Information in 2 Minuten gegoogelt werden kann, muss sie nicht in `03_Resources` gespeichert werden.
+
+## 6. Datenschutz-Hygiene (Vor jedem Commit/Push)
+- **Regel**: Echte persönliche Inhalte gehören nur in ein privates Repo oder in ignorierte lokale Dateien.
+- **Aktion**: Vor jedem Commit prüft die KI `git status --short` und `git diff --cached`.
+- **KI-Anweisung**: Wenn private Inhalte in einem öffentlichen Repo auftauchen, bricht die KI den Commit ab und schlägt eine private Ablage vor.

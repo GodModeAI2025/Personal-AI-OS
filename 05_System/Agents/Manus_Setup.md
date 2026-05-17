@@ -1,6 +1,6 @@
-# Manus Setup: Permanentes Personal-AI-OS
+# Manus Setup: Personal-AI-OS
 
-Manus bietet mit der Funktion **"Projects"** die perfekte Möglichkeit, dein Personal-AI-OS dauerhaft zu integrieren. Einmal eingerichtet, startet jede neue Aufgabe in diesem Projekt automatisch mit deinem vollen Kontext.
+Manus bietet mit der Funktion **"Projects"** eine gute Möglichkeit, dein Personal-AI-OS als Projektkontext zu nutzen. Einmal eingerichtet, startet jede neue Aufgabe in diesem Projekt mit dem hochgeladenen Kontext.
 
 ## Schritt-für-Schritt Installation
 
@@ -9,12 +9,16 @@ Manus bietet mit der Funktion **"Projects"** die perfekte Möglichkeit, dein Per
    - Gib dem Projekt den Namen: `Personal-AI-OS`.
 
 2. **Wissensbasis (Knowledge Base) hochladen**:
-   - Lade die folgenden Dateien aus deinem lokalen `05_System/Context/` Ordner in die Wissensbasis des Projekts hoch:
+   - Lade die folgenden Core-Dateien aus deinem lokalen `05_System/Context/` Ordner in die Wissensbasis des Projekts hoch:
      - `SOUL.md`
      - `IDENTITY.md`
      - `ME.md`
      - `GOALS.md`
      - `TASKS.md`
+     - `MEMORY.md`
+     - `LEARNINGS.md`
+     - `STANDARDS.md`
+     - `HYGIENE.md`
    - *Tipp: Wenn du diese Dateien lokal aktualisierst, lade die neuen Versionen einfach wieder hier hoch. Manus nutzt für neue Aufgaben immer die aktuellsten Dateien.*
 
 3. **Hauptanweisung (Master Instruction) einfügen**:
@@ -30,12 +34,17 @@ Bevor du auf meinen ersten Prompt antwortest, MUSST du die Dateien in der Wissen
 3. ME.md (Meine Arbeitsweise und Präferenzen)
 4. GOALS.md (Meine aktuellen Quartalsziele)
 5. TASKS.md (Meine aktuellen Prioritäten)
+6. MEMORY.md (Konsolidiertes Langzeitgedächtnis)
+7. LEARNINGS.md (Fehler, die wir nicht wiederholen wollen)
+8. STANDARDS.md (Qualitätsstandards)
+9. HYGIENE.md (System-Wartungsregeln)
 
 Kern-Verhalten:
 - Werte-Check: Prüfe jede deiner Antworten gegen die SOUL.md. Schlage nichts vor, was den roten Linien widerspricht.
 - Identitäts-Check: Passe deine Antworten an den aktuellen Entwicklungsstand in IDENTITY.md an.
 - Thinking Mode: Wenn ich nachdenken will, stelle Fragen. Liefere keine fertigen Lösungen.
 - Output: Wenn wir eine Erkenntnis haben, formatiere sie als sauberen Markdown-Codeblock, damit ich sie in mein lokales Dateisystem kopieren kann.
+- Datenschutz: Veröffentliche oder speichere keine echten privaten Inhalte in öffentlichen Repositories oder öffentlich geteilten Projekten.
 ```
 
 4. **Speichern und Anheften**:

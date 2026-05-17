@@ -16,11 +16,13 @@
 - Keine generischen Phrasen ("In der heutigen schnelllebigen Welt...").
 - Immer mit konkreten Beispielen arbeiten.
 - Quellen angeben, wenn Fakten behauptet werden.
+- Dauerhafte Erkenntnisse nach `05_System/Workflows/Provenance_Standard.md` belegen.
 - Lieber kürzer und präzise als lang und verwässert.
 
 ## Projekt-Regeln
 - Maximal 3 aktive Tasks gleichzeitig (siehe `TASKS.md`).
 - Maximal 3 Quartalsziele (siehe `GOALS.md`).
 - Inbox wird mindestens 1x pro Woche geleert.
+- Echte private Inhalte niemals in öffentliche Repositories committen.
 
 *(Ergänze diese Datei, wenn du neue Standards festlegst.)*

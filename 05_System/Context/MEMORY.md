@@ -17,3 +17,13 @@
 
 ---
 *KI-Anweisung: Aktualisiere diese Datei während der "Weekly Synthesis" (Dreaming-Prozess). Übertrage wichtige Erkenntnisse aus den Daily Notes hierher, um sie vom Kurzzeit- ins Langzeitgedächtnis zu verschieben.*
+
+## Memory-Aufnahmeregel
+
+Dauerhafte Erkenntnisse dürfen nur übernommen werden, wenn sie mindestens eine dieser Bedingungen erfüllen:
+
+- Sie sind mit `Medium` oder `High` nach `05_System/Workflows/Provenance_Standard.md` belegt.
+- Sie sind ausdrücklich als Hypothese markiert.
+- Sie sind eine persönliche Präferenz, die der Nutzer direkt bestätigt hat.
+
+Jede faktische Erkenntnis braucht Source-ID, Locator und kurzen Beleg. Unsichere Aussagen bleiben im Projekt, in `LEARNINGS.md` oder in einer Ressourcen-Notiz, aber nicht als gesichertes Langzeitgedächtnis.

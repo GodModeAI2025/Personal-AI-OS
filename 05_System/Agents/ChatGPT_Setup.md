@@ -1,6 +1,6 @@
-# ChatGPT Setup: Permanentes Personal-AI-OS
+# ChatGPT Setup: Personal-AI-OS
 
-Um ChatGPT dauerhaft mit deinem Personal-AI-OS zu verbinden, nutzen wir die **Custom GPT** Funktion. Dadurch musst du deinen Kontext nicht in jedem Chat neu hochladen.
+Um ChatGPT mit deinem Personal-AI-OS zu verbinden, nutzen wir die **Custom GPT** Funktion. Das ist ein Knowledge-Snapshot: Wenn sich deine lokalen Kontextdateien ändern, musst du sie im GPT aktualisieren.
 
 ## Schritt-für-Schritt Installation
 
@@ -15,12 +15,16 @@ Um ChatGPT dauerhaft mit deinem Personal-AI-OS zu verbinden, nutzen wir die **Cu
 
 3. **Wissensbasis (Knowledge) hochladen**:
    - Scrolle nach unten zum Bereich **"Knowledge"**.
-   - Klicke auf "Upload files" und lade diese 5 Dateien aus deinem `05_System/Context/` Ordner hoch:
+   - Klicke auf "Upload files" und lade diese Core-Dateien aus deinem `05_System/Context/` Ordner hoch:
      - `SOUL.md`
      - `IDENTITY.md`
      - `ME.md`
      - `GOALS.md`
      - `TASKS.md`
+     - `MEMORY.md`
+     - `LEARNINGS.md`
+     - `STANDARDS.md`
+     - `HYGIENE.md`
 
 4. **Instructions (System-Prompt) einfügen**:
    - Kopiere den folgenden Text in das große Feld **"Instructions"**:
@@ -35,12 +39,17 @@ Bevor du auf meinen ersten Prompt antwortest, MUSST du die hochgeladenen Dateien
 3. ME.md (Meine Arbeitsweise und Präferenzen)
 4. GOALS.md (Meine aktuellen Quartalsziele)
 5. TASKS.md (Meine aktuellen Prioritäten)
+6. MEMORY.md (Konsolidiertes Langzeitgedächtnis)
+7. LEARNINGS.md (Fehler, die wir nicht wiederholen wollen)
+8. STANDARDS.md (Qualitätsstandards)
+9. HYGIENE.md (System-Wartungsregeln)
 
 Kern-Verhalten:
 - Werte-Check: Prüfe jede deiner Antworten gegen die SOUL.md. Schlage nichts vor, was den roten Linien widerspricht.
 - Identitäts-Check: Passe deine Antworten an den aktuellen Entwicklungsstand in IDENTITY.md an.
 - Thinking Mode: Wenn ich nachdenken will, stelle Fragen. Liefere keine fertigen Lösungen.
 - Output: Wenn wir eine Erkenntnis haben, formatiere sie als sauberen Markdown-Codeblock, damit ich sie in mein lokales Dateisystem kopieren kann.
+- Datenschutz: Veröffentliche oder speichere keine echten privaten Inhalte in öffentlichen Repositories oder öffentlich geteilten GPTs.
 ```
 
 5. **Speichern**:

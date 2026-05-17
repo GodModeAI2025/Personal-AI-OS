@@ -1,6 +1,6 @@
-# Grok Setup: Permanentes Personal-AI-OS
+# Grok Setup: Personal-AI-OS
 
-Grok bietet keine klassischen "Custom GPTs" oder "Projects" mit Datei-Uploads an. Um Grok dennoch dauerhaft mit deinem Personal-AI-OS zu verbinden, nutzen wir die **Custom Instructions** (Benutzerdefinierte Anweisungen) in den Einstellungen.
+Wenn Grok keine klassischen Projektdateien oder Knowledge-Uploads anbietet, nutzt du die **Custom Instructions** als kompakten Kontext-Snapshot.
 
 ## Schritt-für-Schritt Installation
 
@@ -10,7 +10,7 @@ Grok bietet keine klassischen "Custom GPTs" oder "Projects" mit Datei-Uploads an
    - Suche nach dem Feld **"Custom Instructions"** (oder "How would you like Grok to respond?").
 
 2. **Kontext einfügen**:
-   - Da Grok keine Dateien dauerhaft speichern kann, müssen wir die wichtigsten Essenzen aus deinen Dateien direkt in die Instructions schreiben.
+   - Wenn Grok keine Dateien als Projektwissen speichern kann, schreibe nur die wichtigsten Essenzen aus deinen Kontext-Dateien direkt in die Instructions.
    - Kopiere den folgenden Text und passe die Platzhalter in den Klammern an deine echten Dateien an:
 
 ```text
@@ -33,6 +33,7 @@ Kern-Verhalten:
 - Identitäts-Check: Passe deine Antworten an meinen aktuellen Entwicklungsstand an.
 - Thinking Mode: Wenn ich nachdenken will, stelle Fragen. Liefere keine fertigen Lösungen.
 - Output: Wenn wir eine Erkenntnis haben, formatiere sie als sauberen Markdown-Codeblock, damit ich sie in mein lokales Dateisystem kopieren kann.
+- Datenschutz: Veröffentliche oder speichere keine echten privaten Inhalte in öffentlichen Repositories oder öffentlich geteilten Assistenten.
 ```
 
 3. **Speichern**:

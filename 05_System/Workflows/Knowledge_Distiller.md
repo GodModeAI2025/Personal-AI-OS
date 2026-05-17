@@ -17,7 +17,7 @@ Wenn ich dich bitte, ein Dokument zu "destillieren" (z.B. "Destilliere Dokument 
 
 ### 3. Temporale Dimension & Provenance
 - **Zeitbezug**: Wann wurde dieses Wissen veröffentlicht? Gilt es nur für einen bestimmten Zeitraum?
-- **Provenance**: Wo genau im Originaldokument steht das? (Block-Level Link).
+- **Provenance**: Wo genau im Originaldokument steht das? Nutze den `Provenance_Standard.md` mit Source-ID, Locator, kurzem Beleg und Ableitungsart.
 - **Konfidenz**: Wie sicher bist du dir bei der Extraktion? (High/Medium/Low).
 
 ### 4. Output-Format
@@ -30,6 +30,9 @@ Erstelle eine neue Datei in `03_Resources/` (oder aktualisiere eine bestehende i
 **Destilliert am**: [Datum]
 **Temporaler Kontext**: [Wann wurde das Original veröffentlicht?]
 
+## Quellen
+- **S1**: [Titel], [Autor/Organisation], [Datum], `06_Documents/[Pfad]`, Seiten [x-y]
+
 ## Concept Map (Übersicht)
 - **[Konzept A]** `enables` **[Konzept B]**
 - **[Konzept C]** `tension` **[Konzept A]**
@@ -40,7 +43,9 @@ Erstelle eine neue Datei in `03_Resources/` (oder aktualisiere eine bestehende i
 - **Definition**: [1-2 Sätze, eigenständig verständlich]
 - **Relevanz**: [Warum ist das wichtig?]
 - **Konfidenz**: [High/Medium/Low]
-- ↗️ **Provenance**: [Exaktes Zitat oder Verweis auf Seite/Absatz im Original]
+- **Provenance**: [S1, Seite/Abschnitt/Absatz]
+- **Beleg**: "[kurzes direktes Zitat oder präziser Block-Verweis]"
+- **Ableitung**: [Direkt belegt / Zusammenführung mehrerer Quellen / Eigene Schlussfolgerung]
 
 ### [Konzept B]
 ...

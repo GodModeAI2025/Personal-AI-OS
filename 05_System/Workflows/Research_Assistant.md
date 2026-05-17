@@ -20,5 +20,5 @@ Wenn ich dich als "Research Assistant" aufrufe, gehe wie folgt vor:
 
 ### 4. Ergebnis speichern (WICHTIG)
 - Erstelle eine neue Datei in `03_Resources/` **zwingend** mit der Vorlage `05_System/Templates/Resource_Template.md`.
-- Achte besonders auf die **Block-Level Provenance**: Zitiere exakt, woher die Erkenntnis stammt.
+- Achte besonders auf die **Block-Level Provenance** nach `05_System/Workflows/Provenance_Standard.md`: Source-ID, Locator, kurzer Beleg, Konfidenz und Ableitungsart.
 - Verlinke die neue Ressource mit bestehenden Notizen, falls es Verbindungen gibt.

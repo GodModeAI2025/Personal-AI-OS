@@ -16,3 +16,23 @@ node_modules/
 # Temporäre Dateien
 *.tmp
 *.bak
+
+# Persönliche Arbeitsdaten in öffentlichen Template-Repos
+# Die README-Dateien bleiben versioniert; echte Inhalte gehören in ein privates Repo.
+00_Inbox/**
+!00_Inbox/README.md
+01_Projects/**
+!01_Projects/README.md
+02_Areas/**
+!02_Areas/README.md
+03_Resources/**
+!03_Resources/README.md
+04_Archive/**
+!04_Archive/README.md
+06_Documents/**
+!06_Documents/README.md
+
+# Lokale private Kontext-Ergänzungen
+05_System/Context/private/
+05_System/Context/*.local.md
+05_System/Context/*_private.md

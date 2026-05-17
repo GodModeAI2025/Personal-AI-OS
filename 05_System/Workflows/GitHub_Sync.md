@@ -1,11 +1,17 @@
 # Workflow: GitHub Sync
 
-Da das gesamte Personal-AI-OS aus reinen Textdateien und Ordnern besteht, ist GitHub der perfekte Mechanismus, um dein Wissen über alle Geräte hinweg zu synchronisieren und zu versionieren.
+Da das gesamte Personal-AI-OS aus reinen Textdateien und Ordnern besteht, ist GitHub ein guter Mechanismus, um dein Wissen über alle Geräte hinweg zu synchronisieren und zu versionieren. Für echte persönliche Inhalte muss das Ziel-Repository privat sein.
 
 ## Warum GitHub?
 1. **Versionierung**: Du siehst genau, wann eine KI (oder du selbst) eine Datei geändert hat. Wenn eine KI etwas überschreibt, kannst du es jederzeit rückgängig machen.
 2. **Überall verfügbar**: Du kannst dein OS auf dem Laptop, dem Desktop und sogar auf dem Smartphone (z.B. mit der App "Working Copy" für iOS) nutzen.
-3. **Privatsphäre**: Wenn du ein privates Repository anlegst, gehören die Daten nur dir.
+3. **Privatsphäre**: Nur ein privates Repository ist für echte persönliche Inhalte geeignet. Ein öffentliches Pages-Repository ist nur als Template oder Landingpage geeignet.
+
+## Sicherheitsentscheidung
+
+- **Öffentliches Repo**: Nur Template, README, Landingpage, Platzhalter und allgemeine Workflows.
+- **Privates Repo**: Echte Ziele, Aufgaben, Projektdateien, Dokumente, Quellen, Erinnerungen und persönliche Kontextdaten.
+- **Nie committen**: Zugangsdaten, API-Keys, Tokens, private PDFs, Kundendaten oder Gesundheits-/Finanzinformationen in ein öffentliches Repo.
 
 ## Einmalige Einrichtung
 
@@ -34,10 +40,14 @@ Um das System aktuell zu halten, solltest du (oder die KI, wenn sie Terminal-Zug
 ### Änderungen hochladen (Push)
 Am Ende des Tages oder nach einer großen KI-Session:
 ```bash
+git status --short
 git add .
+git diff --cached
 git commit -m "Update: [Kurze Beschreibung, z.B. Daily Review oder neues Projekt]"
 git push
 ```
+
+Wenn `git diff --cached` private Inhalte zeigt, brich ab und verschiebe diese Inhalte in ein privates Repo oder in eine ignorierte lokale Datei.
 
 ### Änderungen herunterladen (Pull)
 Bevor du an einem anderen Gerät weiterarbeitest:
@@ -58,3 +68,11 @@ git lfs track "*.jpg"
 git add .gitattributes
 ```
 So bleiben die großen Dateien ausgelagert und dein Text-OS bleibt blitzschnell.
+
+## Öffentliche Template-Repos
+
+Wenn du dieses System öffentlich als Template veröffentlichst, nutze die `.gitignore`-Regeln aus diesem Repository:
+
+- README-Dateien bleiben sichtbar.
+- Neue persönliche Inhalte in Inbox, Projekten, Ressourcen, Archiv und Dokumenten werden ignoriert.
+- Private Kontext-Ergänzungen gehören in `05_System/Context/private/` oder in Dateien mit `.local.md`.

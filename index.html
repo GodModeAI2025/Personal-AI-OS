@@ -119,6 +119,16 @@
             font-size: 1.1rem;
         }
 
+        .notice {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 0.5rem;
+            padding: 1rem 1.25rem;
+            margin: -2rem 0 3rem;
+            color: var(--secondary-color);
+        }
+
         footer {
             text-align: center;
             margin-top: 4rem;
@@ -146,10 +156,14 @@
             <a href="https://github.com/GodModeAI2025/Personal-AI-OS" class="btn">View on GitHub</a>
         </header>
 
+        <div class="notice">
+            Dieses öffentliche Repository ist ein Template. Echte persönliche Inhalte gehören in ein privates Repo oder einen lokalen verschlüsselten Ordner.
+        </div>
+
         <div class="card">
             <h2>Das Problem mit KI heute</h2>
             <p>Herkömmliche KI-Chats starten immer bei null. Sie kennen deine Projekte, deine Ziele und deine Arbeitsweise nicht. Du musst jedes Mal von vorne erklären, wer du bist und was du brauchst.</p>
-            <p><strong>Die Lösung:</strong> Dieses Personal-AI-OS zieht eine permanente Kontext-Schicht ein. Du richtest deine KI (Manus, ChatGPT, Claude, Gemini, Grok) einmalig ein, und sie greift dauerhaft auf dein "Gehirn" zu.</p>
+            <p><strong>Die Lösung:</strong> Dieses Personal-AI-OS zieht eine versionierte Kontext-Schicht ein. Je nach KI nutzt du direkten Projektzugriff oder regelmäßig aktualisierte Knowledge-Snapshots.</p>
         </div>
 
         <h2>Kernfunktionen</h2>
@@ -164,7 +178,7 @@
             </div>
             <div class="feature-item">
                 <h3>🛡️ Triage & Provenance</h3>
-                <p>Schützt vor Vault Bloat durch automatische Filter. Jede Erkenntnis verlinkt exakt auf den Original-Absatz der Quelle (Block-Level Provenance).</p>
+                <p>Schützt vor Vault Bloat durch automatische Filter. Jede Erkenntnis erhält Source-ID, Locator, Beleg, Konfidenz und Ableitungsart.</p>
             </div>
             <div class="feature-item">
                 <h3>🔄 Lern-Loop</h3>
@@ -187,6 +201,7 @@
 
         <footer>
             <p>Inspiriert von Tiago Forte (Building a Second Brain), Andrej Karpathy, dem Obsilo-Framework und OpenClaw.</p>
+            <p><a href="https://github.com/GodModeAI2025/Personal-AI-OS/blob/master/PRIVACY.md">Privacy Model</a></p>
             <p><a href="https://godmodeai2025.github.io/MarkZimmermann/">Impressum</a></p>
         </footer>
     </div>

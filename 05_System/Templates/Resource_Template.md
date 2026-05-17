@@ -6,6 +6,14 @@
 
 ---
 
+## Quellen
+- **S1**: [Titel], [Autor/Organisation], [Datum], [URL oder Pfad], abgerufen am [YYYY-MM-DD]
+- **S2**: [Optional: weitere Quelle]
+
+*Regel: Jede Erkenntnis unten muss auf mindestens eine Source-ID verweisen. Details siehe `05_System/Workflows/Provenance_Standard.md`.*
+
+---
+
 ## Triage-Ergebnis
 - **Cluster**: [Zu welchem Thema gehört das?]
 - **Tension**: [Bestätigt, erweitert oder widerspricht es?]
@@ -19,12 +27,16 @@
 ### Erkenntnis 1: [Titel der Erkenntnis]
 [Beschreibung der Erkenntnis in eigenen Worten.]
 - **Konfidenz**: [High/Medium/Low - Wie sicher bist du, dass diese Erkenntnis faktisch korrekt ist?]
-- ↗️ **Provenance**: [Zitiere hier den exakten Block/Absatz aus der Originalquelle, damit wir in 6 Monaten noch wissen, warum wir das geglaubt haben. Keine Fußnoten wie [1], sondern das direkte Zitat oder der Block-Link.]
+- **Provenance**: [S1, Seite/Abschnitt/Überschrift/Absatz]
+- **Beleg**: "[kurzes direktes Zitat oder präziser Block-Verweis]"
+- **Ableitung**: [Direkt belegt / Zusammenführung mehrerer Quellen / Eigene Schlussfolgerung]
 
 ### Erkenntnis 2: [Titel der Erkenntnis]
 [Beschreibung der Erkenntnis in eigenen Worten.]
 - **Konfidenz**: [High/Medium/Low]
-- ↗️ **Provenance**: [Exakter Block/Absatz aus der Quelle]
+- **Provenance**: [S1, Seite/Abschnitt/Überschrift/Absatz]
+- **Beleg**: "[kurzes direktes Zitat oder präziser Block-Verweis]"
+- **Ableitung**: [Direkt belegt / Zusammenführung mehrerer Quellen / Eigene Schlussfolgerung]
 
 ---
 
