@@ -44,7 +44,12 @@ node tools/memory-server/bin/paios-memory.js context --profile chatgpt --write
 node tools/memory-server/bin/paios-memory.js serve
 ```
 
-Details stehen in `05_System/Memory/README.md`.
+Details stehen in:
+
+- `05_System/Memory/README.md`
+- `05_System/Memory/HANDBUCH.md`
+- `05_System/Memory/CONNECTORS.md`
+- `05_System/Memory/TECHNICAL_REFERENCE.md`
 
 ## Das "Gehirn" anpassen (`05_System/Context/`)
 

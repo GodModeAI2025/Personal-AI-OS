@@ -2,6 +2,13 @@
 
 Diese Memory-Schicht macht aus dem Markdown-System eine lokal laufende Infrastruktur. Sie ist bewusst **macOS-first** gebaut, weil der Server rekursive Datei-Watcher und `launchd` nutzt.
 
+## Dokumentation
+
+- `HANDBUCH.md`: ausführliche Schritt-für-Schritt-Anleitung für Einrichtung, Alltag, Betrieb und Fehlerbehebung.
+- `CONNECTORS.md`: konkrete Anbindung an Claude, Codex, ChatGPT, Gemini, Grok und Manus.
+- `TECHNICAL_REFERENCE.md`: CLI, Konfiguration, HTTP-API, MCP-Tools, Indexmodell und Security-Modell.
+- `tools/memory-server/README.md`: kurze technische Einstiegshilfe direkt beim Server-Code.
+
 ## Zielbild
 
 ```text
@@ -13,15 +20,15 @@ Private Personal-AI-OS Kopie
   -> ChatGPT / Claude / Gemini / Grok je nach Tool-Faehigkeit
 ```
 
-Wichtig: Echte Live-Erinnerung funktioniert nur dort, wo das jeweilige KI-Tool einen Live-Connector, MCP, API-Zugriff oder eine vergleichbare Tool-Schnittstelle ausfuehren kann. Wenn ein Consumer-Tool nur Knowledge-Uploads oder Custom Instructions anbietet, erzeugt die Infrastruktur stattdessen aktuelle Snapshots.
+Wichtig: Echte Live-Erinnerung funktioniert nur dort, wo das jeweilige KI-Tool einen Live-Connector, MCP, API-Zugriff oder eine vergleichbare Tool-Schnittstelle ausführen kann. Wenn ein Consumer-Tool nur Knowledge-Uploads oder Custom Instructions anbietet, erzeugt die Infrastruktur stattdessen aktuelle Snapshots.
 
 ## Komponenten
 
 - `tools/memory-server/`: dependency-freier Node.js Server und CLI.
 - `.paios-memory/index.json`: lokaler Suchindex. Wird nicht committet.
-- `.paios-memory/snapshots/`: generierte Kontext-Snapshots fuer Tools ohne Live-Zugriff.
+- `.paios-memory/snapshots/`: generierte Kontext-Snapshots für Tools ohne Live-Zugriff.
 - `.paios-memory/connectors/`: lokale MCP-Konfigurationssnippets.
-- `05_System/Context/MEMORY.md`: konsolidiertes Langzeitgedaechtnis.
+- `05_System/Context/MEMORY.md`: konsolidiertes Langzeitgedächtnis.
 - `05_System/Context/LEARNINGS.md`: Korrekturen und Fehler, die nicht wiederholt werden sollen.
 - `05_System/Context/DECISIONS.md`: stabile Entscheidungen.
 
@@ -35,7 +42,7 @@ node tools/memory-server/bin/paios-memory.js context --profile chatgpt --write
 node tools/memory-server/bin/paios-memory.js serve
 ```
 
-Der HTTP-Server laeuft lokal auf:
+Der HTTP-Server läuft lokal auf:
 
 ```text
 http://127.0.0.1:47777
@@ -51,17 +58,17 @@ Wichtige Endpunkte:
 
 ## MCP-Server
 
-Fuer Tools mit MCP-Unterstuetzung wird kein separater HTTP-Daemon benoetigt. Das Tool startet den Server ueber stdio:
+Für Tools mit MCP-Unterstützung wird kein separater HTTP-Daemon benötigt. Das Tool startet den Server über stdio:
 
 ```bash
 node tools/memory-server/bin/paios-memory.js mcp
 ```
 
-Verfuegbare MCP-Tools:
+Verfügbare MCP-Tools:
 
 - `memory_search`: lokale Memory-Suche.
 - `memory_context`: baut einen kontextoptimierten Snapshot.
-- `memory_remember`: schreibt bestaetigte Fakten, Praeferenzen, Muster, Entscheidungen oder Learnings.
+- `memory_remember`: schreibt bestätigte Fakten, Präferenzen, Muster, Entscheidungen oder Learnings.
 - `memory_reindex`: baut den lokalen Index neu.
 - `memory_status`: zeigt Index-Status.
 
@@ -101,14 +108,14 @@ Logs liegen in:
 
 ## Git-Sync
 
-Git-Sync ist absichtlich defensiv. Gegen das oeffentliche Template-Repo verweigert `paios-memory sync` Push/Pull, solange nicht explizit `--allow-public` gesetzt ist. Push mit echten Memory-Inhalten braucht zusaetzlich `--confirm-private` oder `sync.privateRemoteConfirmed=true` in `.paios-memory/config.json`.
+Git-Sync ist absichtlich defensiv. Gegen das öffentliche Template-Repo verweigert `paios-memory sync` Push/Pull, solange nicht explizit `--allow-public` gesetzt ist. Push mit echten Memory-Inhalten braucht zusätzlich `--confirm-private` oder `sync.privateRemoteConfirmed=true` in `.paios-memory/config.json`.
 
 ```bash
 node tools/memory-server/bin/paios-memory.js sync
 node tools/memory-server/bin/paios-memory.js sync --push --confirm-private
 ```
 
-Beim bestaetigten Push nutzt der Sync `git add -f` fuer die Arbeitsordner, weil das oeffentliche Template echte Inhalte standardmaessig ignoriert.
+Beim bestätigten Push nutzt der Sync `git add -f` für die Arbeitsordner, weil das öffentliche Template echte Inhalte standardmäßig ignoriert.
 
 ## Tool-Matrix
 
@@ -122,4 +129,4 @@ Beim bestaetigten Push nutzt der Sync `git add -f` fuer die Arbeitsordner, weil 
 
 ## Sicherheitsregel
 
-Dieses oeffentliche Repo ist ein Template. Die Memory-Infrastruktur darf private Inhalte indizieren, aber `.paios-memory/` und echte Arbeitsdaten duerfen nicht in dieses oeffentliche Repository gepusht werden.
+Dieses öffentliche Repo ist ein Template. Die Memory-Infrastruktur darf private Inhalte indizieren, aber `.paios-memory/` und echte Arbeitsdaten dürfen nicht in dieses öffentliche Repository gepusht werden.

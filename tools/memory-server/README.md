@@ -26,3 +26,9 @@ node tools/memory-server/bin/paios-memory.js sync --push --confirm-private
 ```
 
 Runtime data is written to `.paios-memory/` and should stay private.
+
+Full German documentation:
+
+- `../../05_System/Memory/HANDBUCH.md`
+- `../../05_System/Memory/CONNECTORS.md`
+- `../../05_System/Memory/TECHNICAL_REFERENCE.md`
