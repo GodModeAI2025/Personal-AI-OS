@@ -1,24 +1,32 @@
-# [Titel der Ressource / Studie / des Artikels]
+# [Titel der Ressource]
 
-- **Datum hinzugefügt**: [Datum]
-- **Quelle/URL**: [Link]
-- **Thema/Tags**: [z.B. KI, Produktivität, Gesundheit]
+**Datum**: [YYYY-MM-DD]
+**Quelle**: [URL oder Dateiname]
+**Tags**: #ressource #thema
 
-## Zusammenfassung (TL;DR)
-*Was ist die Kernaussage dieser Ressource in 2-3 Sätzen?*
-- [Zusammenfassung]
+---
 
-## Wichtige Erkenntnisse (Key Insights)
-*Welche spezifischen Daten, Fakten oder Ideen sind es wert, behalten zu werden?*
-- Erkenntnis 1
-- Erkenntnis 2
-- Erkenntnis 3
+## Triage-Ergebnis
+- **Cluster**: [Zu welchem Thema gehört das?]
+- **Tension**: [Bestätigt, erweitert oder widerspricht es?]
+- **Diversity**: [Neue Perspektive oder Echo-Kammer?]
+
+---
+
+## Dialog-Extraktion (Keine platte Zusammenfassung!)
+*Anweisung an die KI: Fasse diese Quelle NICHT einfach zusammen. Führe einen Dialog mit mir. Frage mich, welche Aspekte für meine aktuellen Projekte relevant sind. Extrahiere nur das, was wirklich nützlich ist.*
+
+### Erkenntnis 1: [Titel der Erkenntnis]
+[Beschreibung der Erkenntnis in eigenen Worten.]
+↗️ **Provenance**: [Zitiere hier den exakten Block/Absatz aus der Originalquelle, damit wir in 6 Monaten noch wissen, warum wir das geglaubt haben. Keine Fußnoten wie [1], sondern das direkte Zitat oder der Block-Link.]
+
+### Erkenntnis 2: [Titel der Erkenntnis]
+[Beschreibung der Erkenntnis in eigenen Worten.]
+↗️ **Provenance**: [Exakter Block/Absatz aus der Quelle]
+
+---
 
 ## Verbindungen (Networked Thinking)
-*Wie verbindet sich das mit anderen Dingen in meinem System? Widerspricht es etwas? Bestätigt es etwas?*
-- Verbindet sich mit: [[Anderes Konzept/Projekt]]
-- Weil: [Begründung]
-
-## Offene Fragen / Eigene Gedanken
-*Was denke ich darüber? Welche Fragen wirft das auf?*
-- [Gedanke/Frage]
+- **Unterstützt**: [[Link zu einer anderen Notiz, die dadurch gestärkt wird]]
+- **Widerspricht**: [[Link zu einer Notiz, die dadurch in Frage gestellt wird]]
+- **Relevant für Projekt**: [[Link zum Projekt]]

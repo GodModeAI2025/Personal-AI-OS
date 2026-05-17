@@ -2,7 +2,7 @@
 
 Ein toolunabhängiges, Markdown-basiertes Personal Operating System. Es dient als zentraler Wissensspeicher und als "Arbeitsgedächtnis" für dich und deine KI-Agenten (Manus, OpenAI/ChatGPT, Gemini, Anthropic/Claude, Grok).
 
-Dieses System basiert auf den neuesten Erkenntnissen des Personal Knowledge Managements (PKM), der Kognitionsforschung (Cognitive Offloading) und der PARA-Methode [1] [2].
+Dieses System basiert auf den neuesten Erkenntnissen des Personal Knowledge Managements (PKM), der Kognitionsforschung (Cognitive Offloading) und der PARA-Methode [1] [2]. Es integriert zudem fortschrittliche Konzepte wie **Block-Level Provenance** und **Triage-Filter**, inspiriert von Andrej Karpathy und dem Obsilo-Framework [5] [6].
 
 ## Warum dieses System?
 
@@ -44,17 +44,18 @@ Im Ordner `05_System/Agents/` findest du detaillierte Schritt-für-Schritt-Anlei
 ## Die Workflows nutzen
 Das System enthält vordefinierte Workflows in `05_System/Workflows/`. Du kannst die KI einfach triggern:
 
+- **"Triage"**: Bevor eine neue Quelle ins System kommt, prüft die KI sie auf Relevanz, Redundanz und Diversität (Schutz vor Vault Bloat).
 - **"Lass uns ein Daily Review machen"**: Die KI hilft dir, den Tag zu reflektieren und die Prioritäten für morgen in `TASKS.md` zu schreiben.
 - **"Führe eine Weekly Synthesis durch"**: Die KI analysiert deine Woche, erkennt Muster und hilft dir beim Aufräumen.
 - **"Sei mein Thinking Partner für Thema X"**: Die KI wechselt in einen Modus, in dem sie dir klärende Fragen stellt, statt dir fertige (und oft flache) Lösungen zu präsentieren.
-- **"Process my Inbox"**: Die KI liest alle neuen Dateien in der Inbox und schlägt vor, wo sie einsortiert werden sollen.
 
 ## Wissenschaftlicher Hintergrund
 
-Dieses System nutzt drei zentrale Konzepte der Kognitionsforschung:
+Dieses System nutzt zentrale Konzepte der Kognitionsforschung und des modernen Wissensmanagements:
 - **Cognitive Offloading**: Dein Gehirn ist zum Denken da, nicht zum Speichern. Indem du alles in dieses System auslagerst, reduzierst du deinen mentalen Load [3].
-- **Networked Thinking**: Durch das Verlinken von Notizen (siehe `Resource_Template.md`) entstehen neue Ideenverbindungen, ähnlich einem Zettelkasten [4].
-- **Single Source of Truth**: Statt Wissen über Notion, Apple Notes, E-Mails und ChatGPT-Verläufe zu verstreuen, liegt alles als zukunftssicheres Markdown an einem Ort.
+- **Block-Level Provenance**: Jede Erkenntnis im System verlinkt exakt auf den Original-Absatz der Quelle. Das verhindert, dass Zusammenfassungsfehler über die Zeit zur "Wahrheit" werden [6].
+- **Dialog statt Summary**: Quellen werden nicht einfach blind zusammengefasst, sondern im Dialog mit der KI auf deine spezifischen Projekte hin extrahiert [6].
+- **Networked Thinking**: Durch das Verlinken von Notizen entstehen neue Ideenverbindungen, ähnlich einem Zettelkasten [4].
 
 ---
 
@@ -65,3 +66,4 @@ Dieses System nutzt drei zentrale Konzepte der Kognitionsforschung:
 [3] Risko, E. F., & Gilbert, S. J. (2016). Cognitive Offloading. *Trends in Cognitive Sciences*, 20(9), 676-688.
 [4] Ahrens, S. (2017). *How to Take Smart Notes: One Simple Technique to Boost Writing, Learning and Thinking*. CreateSpace Independent Publishing Platform.
 [5] Brier, N. (2025). *Claudesidian: Claude Code + Obsidian Starter Kit*. Abgerufen von https://github.com/heyitsnoah/claudesidian
+[6] Obsilo Framework. (2026). *Block-Level Provenance and Triage Systems*.
