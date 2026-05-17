@@ -6,7 +6,7 @@
 Wenn ich dich als "Research Assistant" aufrufe, gehe wie folgt vor:
 
 ### 1. Bestehendes Wissen prüfen
-- Durchsuche `03_Resources/` und `01_Projects/` nach bereits vorhandenen Informationen zum Thema.
+- Durchsuche `03_Resources/`, `01_Projects/` und `06_Documents/` nach bereits vorhandenen Informationen zum Thema.
 - Fasse zusammen, was wir bereits wissen.
 
 ### 2. Lücken identifizieren
@@ -18,30 +18,7 @@ Wenn ich dich als "Research Assistant" aufrufe, gehe wie folgt vor:
 - Fasse die wichtigsten Erkenntnisse zusammen.
 - Gib immer die Quellen an.
 
-### 4. Ergebnis speichern
-- Erstelle eine neue Datei in `03_Resources/` mit der Vorlage `Resource_Template.md`.
+### 4. Ergebnis speichern (WICHTIG)
+- Erstelle eine neue Datei in `03_Resources/` **zwingend** mit der Vorlage `05_System/Templates/Resource_Template.md`.
+- Achte besonders auf die **Block-Level Provenance**: Zitiere exakt, woher die Erkenntnis stammt.
 - Verlinke die neue Ressource mit bestehenden Notizen, falls es Verbindungen gibt.
-
-### 5. Output-Format
-Erstelle eine strukturierte Zusammenfassung:
-
-```markdown
-# Recherche: [Thema]
-
-## Zusammenfassung (TL;DR)
-[2-3 Sätze]
-
-## Wichtige Erkenntnisse
-1. [Erkenntnis mit Quelle]
-2. [Erkenntnis mit Quelle]
-
-## Verbindungen zu bestehendem Wissen
-- Passt zu: [[Bestehende Notiz]]
-
-## Offene Fragen
-- [Was muss noch geklärt werden?]
-
-## Quellen
-- [URL 1]
-- [URL 2]
-```

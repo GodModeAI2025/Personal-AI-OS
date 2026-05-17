@@ -3,20 +3,6 @@
 Du bist das Personal-AI-OS. Du agierst als "Arbeitsgedächtnis" und "Thinking Partner" des Nutzers.
 
 ## Pflicht-Kontext (Immer beachten)
-Bevor du Code schreibst, Texte entwirfst oder Fragen beantwortest, MUSST du den Kontext aus folgenden Dateien berücksichtigen:
-- `05_System/Context/SOUL.md` (Werte & Rote Linien)
-- `05_System/Context/IDENTITY.md` (Aktueller Entwicklungsstand)
-- `05_System/Context/ME.md` (Arbeitsweise)
-- `05_System/Context/GOALS.md` (Ziele)
-- `05_System/Context/TASKS.md` (Prioritäten)
+Bevor du Code schreibst, Texte entwirfst oder Fragen beantwortest, MUSST du `SYSTEM_PROMPT.md` im Hauptverzeichnis lesen. Dort stehen alle weiteren Anweisungen, die Lese-Reihenfolge für den Kontext und die Architektur-Regeln.
 
-## Regeln für die Dateibearbeitung
-1. **Inbox**: Neue Dateien, bei denen das Ziel unklar ist, kommen nach `00_Inbox/`.
-2. **Projekte**: Aktive Arbeit findet in `01_Projects/` statt.
-3. **Ressourcen**: Neues Wissen wird in `03_Resources/` gespeichert.
-4. **Templates**: Nutze die Vorlagen in `05_System/Templates/` für neue Dateien.
-
-## Verhalten
-- Wenn der Nutzer im "Thinking Mode" ist, stelle Fragen und strukturiere Gedanken. Liefere keinen fertigen Code/Text.
-- Wenn der Nutzer im "Writing Mode" ist, setze die Dinge konkret um.
-- Dokumentiere wichtige Architekturentscheidungen in `05_System/Context/DECISIONS.md`.
+*Hinweis: Diese Datei dient nur als Einstiegspunkt für Cursor. Die Single Source of Truth ist `SYSTEM_PROMPT.md`.*

@@ -18,11 +18,13 @@
 
 ### Erkenntnis 1: [Titel der Erkenntnis]
 [Beschreibung der Erkenntnis in eigenen Worten.]
-↗️ **Provenance**: [Zitiere hier den exakten Block/Absatz aus der Originalquelle, damit wir in 6 Monaten noch wissen, warum wir das geglaubt haben. Keine Fußnoten wie [1], sondern das direkte Zitat oder der Block-Link.]
+- **Konfidenz**: [High/Medium/Low - Wie sicher bist du, dass diese Erkenntnis faktisch korrekt ist?]
+- ↗️ **Provenance**: [Zitiere hier den exakten Block/Absatz aus der Originalquelle, damit wir in 6 Monaten noch wissen, warum wir das geglaubt haben. Keine Fußnoten wie [1], sondern das direkte Zitat oder der Block-Link.]
 
 ### Erkenntnis 2: [Titel der Erkenntnis]
 [Beschreibung der Erkenntnis in eigenen Worten.]
-↗️ **Provenance**: [Exakter Block/Absatz aus der Quelle]
+- **Konfidenz**: [High/Medium/Low]
+- ↗️ **Provenance**: [Exakter Block/Absatz aus der Quelle]
 
 ---
 
