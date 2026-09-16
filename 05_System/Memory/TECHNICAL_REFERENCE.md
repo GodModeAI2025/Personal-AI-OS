@@ -124,8 +124,8 @@ Ziel-Dateien:
 Schreib-Gate (gilt für CLI, `POST /remember` und `memory_remember`):
 
 - Zeilenumbrüche und Mehrfach-Leerzeichen in `text`, `confidence`, `source`, `evidence` und `sourceId` werden zu einer Zeile zusammengezogen, damit ein Eintrag das Listenformat der Zieldatei nicht aufbricht.
-- Existiert in der Zieldatei bereits ein Eintrag mit demselben Text (Groß-/Kleinschreibung egal), wird nichts geschrieben. Die Antwort enthält dann `"status": "duplicate"`, sonst `"status": "written"`.
-- Enthält `text`, `evidence` oder `source` etwas, das wie ein Secret aussieht (Private Key, OpenAI-/Anthropic-, GitHub-, AWS-, Slack- oder Google-API-Key), wird der Eintrag mit einem Fehler abgelehnt. Kontextdateien landen in Snapshots für externe KI-Tools und dürfen keine Zugangsdaten enthalten.
+- Existiert in der Zieldatei bereits ein Eintrag mit demselben Text (Groß-/Kleinschreibung egal), wird nichts geschrieben. Die Antwort enthält dann `"status": "duplicate"` und die `sourceId` des vorhandenen Eintrags, sonst `"status": "written"`. Die übrigen Felder der Antwort bleiben gleich.
+- Enthält `text`, `evidence` oder `source` etwas, das wie ein Secret aussieht (Private Key, OpenAI-/Anthropic-, GitHub-, AWS-, Slack- oder Google-API-Key), wird der Eintrag mit einem Fehler abgelehnt. Die Muster sind bewusst eng: Erkannt werden echte Key-Formate, nicht bloße Präfixe wie `sk-` in einer Notiz. Kontextdateien landen in Snapshots für externe KI-Tools und dürfen keine Zugangsdaten enthalten.
 
 ### `serve`
 

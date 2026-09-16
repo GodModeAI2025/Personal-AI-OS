@@ -12,13 +12,15 @@ const TARGETS = {
 
 // Schreib-Gate: Muster, die typischerweise auf Zugangsdaten hindeuten.
 // Solche Werte gehören nie in Kontextdateien, die als Snapshot an KI-Tools gehen.
+// Bewusst eng gefasst, damit Notizen über Keys (z. B. "Keys beginnen mit sk-") oder
+// kebab-case-Namen wie "sk-learn-pipeline-..." nicht fälschlich blockiert werden.
 const SECRET_PATTERNS = [
-  /-----BEGIN [A-Z ]*PRIVATE KEY-----/,
-  /\bsk-(?:ant-|proj-)?[A-Za-z0-9_-]{20,}/,
+  /-----BEGIN [A-Z ]*PRIVATE KEY-----[\s\S]{0,300}?[A-Za-z0-9+/]{40,}/,
+  /\bsk-(?:ant-|proj-)?(?=[A-Za-z0-9_-]*\d)(?=[A-Za-z0-9_-]*[A-Z])[A-Za-z0-9_-]{20,}/,
   /\bgh[pousr]_[A-Za-z0-9]{30,}/,
   /\bgithub_pat_[A-Za-z0-9_]{30,}/,
   /\bAKIA[0-9A-Z]{16}\b/,
-  /\bxox[abprs]-[A-Za-z0-9-]{10,}/,
+  /\bxox[abprs]-\d{6,}-[A-Za-z0-9-]{10,}/,
   /\bAIza[0-9A-Za-z_-]{35}\b/
 ];
 
@@ -40,11 +42,13 @@ export async function remember(root, config, input) {
     throw new Error("remember abgelehnt: Eintrag enthält vermutlich ein Secret (API-Key, Token oder Private Key).");
   }
 
-  const existing = await readIfExists(absoluteTarget);
-  if (containsEntry(existing, text)) {
+  const existing = findEntry(await readIfExists(absoluteTarget), text);
+  if (existing) {
+    // Gleiche Antwortform wie beim Schreiben; sourceId verweist auf den vorhandenen Eintrag.
     return {
       status: "duplicate",
       target,
+      sourceId: existing.sourceId,
       type,
       confidence
     };
@@ -74,12 +78,15 @@ export function looksLikeSecret(value) {
   return SECRET_PATTERNS.some((pattern) => pattern.test(String(value || "")));
 }
 
-// Prüft, ob derselbe Eintragstext (unabhängig von Datum, Typ und Konfidenz) schon existiert.
-function containsEntry(content, text) {
+// Sucht einen Eintrag mit demselben Text (unabhängig von Datum, Typ und Konfidenz).
+function findEntry(content, text) {
   const needle = `): ${text}`.toLowerCase();
-  return content
-    .split("\n")
-    .some((line) => line.startsWith("- **") && compactWhitespace(line).toLowerCase().endsWith(needle));
+  const lines = content.split("\n");
+  const index = lines.findIndex((line) => line.startsWith("- **") && compactWhitespace(line).toLowerCase().endsWith(needle));
+  if (index === -1) return null;
+  const sourceLine = lines[index + 1] || "";
+  const match = sourceLine.match(/^\s+- Source-ID: (.+)$/);
+  return { sourceId: match ? match[1].trim() : null };
 }
 
 async function readIfExists(file) {
