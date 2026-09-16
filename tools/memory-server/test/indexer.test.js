@@ -42,3 +42,34 @@ test("indexes markdown, searches, builds context and writes memory", async () =>
   const memoryText = await fs.readFile(path.join(root, "05_System", "Context", "MEMORY.md"), "utf8");
   assert.match(memoryText, /local-first memory infrastructure/);
 });
+
+test("remember gate normalizes, skips duplicates and rejects secrets", async () => {
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "paios-memory-gate-"));
+  await fs.mkdir(path.join(root, "05_System", "Context"), { recursive: true });
+  const memoryPath = path.join(root, "05_System", "Context", "MEMORY.md");
+  await fs.writeFile(memoryPath, "# Memory\n", "utf8");
+  const config = defaultConfig(root);
+
+  const first = await remember(root, config, {
+    text: "User prefers\nshort answers.",
+    type: "preference",
+    confidence: "High"
+  });
+  assert.equal(first.status, "written");
+
+  const second = await remember(root, config, {
+    text: "  user prefers short answers. ",
+    type: "fact",
+    confidence: "Medium"
+  });
+  assert.equal(second.status, "duplicate");
+
+  const memoryText = await fs.readFile(memoryPath, "utf8");
+  assert.equal(memoryText.match(/prefers short answers/gi).length, 2);
+  assert.match(memoryText, /: User prefers short answers\.\n/);
+
+  await assert.rejects(
+    remember(root, config, { text: "Token ghp_abcdefghijklmnopqrstuvwxyz0123456789" }),
+    /Secret/
+  );
+});

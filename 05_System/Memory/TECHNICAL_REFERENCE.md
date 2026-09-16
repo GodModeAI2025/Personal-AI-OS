@@ -121,6 +121,12 @@ Ziel-Dateien:
 | `decision` | `05_System/Context/DECISIONS.md` |
 | `learning` | `05_System/Context/LEARNINGS.md` |
 
+Schreib-Gate (gilt für CLI, `POST /remember` und `memory_remember`):
+
+- Zeilenumbrüche und Mehrfach-Leerzeichen in `text`, `confidence`, `source`, `evidence` und `sourceId` werden zu einer Zeile zusammengezogen, damit ein Eintrag das Listenformat der Zieldatei nicht aufbricht.
+- Existiert in der Zieldatei bereits ein Eintrag mit demselben Text (Groß-/Kleinschreibung egal), wird nichts geschrieben. Die Antwort enthält dann `"status": "duplicate"`, sonst `"status": "written"`.
+- Enthält `text`, `evidence` oder `source` etwas, das wie ein Secret aussieht (Private Key, OpenAI-/Anthropic-, GitHub-, AWS-, Slack- oder Google-API-Key), wird der Eintrag mit einem Fehler abgelehnt. Kontextdateien landen in Snapshots für externe KI-Tools und dürfen keine Zugangsdaten enthalten.
+
 ### `serve`
 
 Startet den lokalen HTTP-Server:
