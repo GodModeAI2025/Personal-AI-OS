@@ -127,6 +127,23 @@ Schreib-Gate (gilt für CLI, `POST /remember` und `memory_remember`):
 - Existiert in der Zieldatei bereits ein Eintrag mit demselben Text (Groß-/Kleinschreibung egal), wird nichts geschrieben. Die Antwort enthält dann `"status": "duplicate"` und die `sourceId` des vorhandenen Eintrags, sonst `"status": "written"`. Die übrigen Felder der Antwort bleiben gleich.
 - Enthält `text`, `evidence` oder `source` etwas, das wie ein Secret aussieht (Private Key, OpenAI-/Anthropic-, GitHub-, AWS-, Slack- oder Google-API-Key), wird der Eintrag mit einem Fehler abgelehnt. Die Muster sind bewusst eng: Erkannt werden echte Key-Formate, nicht bloße Präfixe wie `sk-` in einer Notiz. Kontextdateien landen in Snapshots für externe KI-Tools und dürfen keine Zugangsdaten enthalten.
 
+Korrektur statt Löschung (`--supersedes` bzw. Feld `supersedes`):
+
+```bash
+node tools/memory-server/bin/paios-memory.js remember "Nutzer arbeitet jetzt mit Python 3.13" \
+  --type fact \
+  --confidence High \
+  --supersedes memory-2026-01-05-1736070000000
+```
+
+- Der neue Eintrag bekommt die Zeile `- Ersetzt: <alte Source-ID>`, der alte Eintrag die Zeile `- Status: überholt durch <neue Source-ID> (<Datum>)`. Gelöscht wird nichts: Eine zurückgenommene Aussage bleibt mit ihrem Beleg nachvollziehbar.
+- Die Source-ID wird in allen Zieldateien gesucht, eine Korrektur darf also den Typ wechseln (z. B. `fact` → `decision`).
+- Ist die Source-ID unbekannt oder der Eintrag schon überholt, schlägt der Aufruf mit einem Fehler fehl; die Fehlermeldung nennt den neueren Eintrag.
+- Abgelehnt wird auch, wenn ein Eintrag sich selbst ersetzen soll oder die neue Source-ID schon vergeben ist — beides würde den Verweis mehrdeutig machen.
+- Existiert der neue Text schon als gültiger Eintrag, entsteht kein zweiter. Der alte Eintrag wird trotzdem auf den vorhandenen Eintrag verwiesen, damit die Korrektur nicht stillschweigend ausfällt; die Antwort hat dann `"status": "duplicate"` und trotzdem `supersedes`.
+- Überholte Einträge zählen nicht mehr als Duplikat. Eine später wieder belegte Aussage kann also erneut aufgenommen werden.
+- Die Antwort enthält zusätzlich `supersedes` und `supersededTarget` (Datei des alten Eintrags).
+
 ### `serve`
 
 Startet den lokalen HTTP-Server:

@@ -109,7 +109,8 @@ function listTools() {
           confidence: { type: "string" },
           source: { type: "string" },
           evidence: { type: "string" },
-          sourceId: { type: "string" }
+          sourceId: { type: "string" },
+          supersedes: { type: "string" }
         },
         required: ["text"],
         additionalProperties: false

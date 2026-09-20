@@ -87,3 +87,130 @@ test("remember gate normalizes, skips duplicates and rejects secrets", async () 
     assert.equal(looksLikeSecret(text), false, text);
   }
 });
+
+test("remember supersedes an outdated entry without deleting it", async () => {
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "paios-memory-supersede-"));
+  await fs.mkdir(path.join(root, "05_System", "Context"), { recursive: true });
+  const memoryPath = path.join(root, "05_System", "Context", "MEMORY.md");
+  const decisionsPath = path.join(root, "05_System", "Context", "DECISIONS.md");
+  await fs.writeFile(memoryPath, "# Memory\n", "utf8");
+  await fs.writeFile(decisionsPath, "# Decisions\n", "utf8");
+  const config = defaultConfig(root);
+
+  const old = await remember(root, config, {
+    text: "User works with Python 3.11.",
+    type: "fact",
+    confidence: "High",
+    sourceId: "memory-test-old"
+  });
+  assert.equal(old.status, "written");
+
+  await assert.rejects(
+    remember(root, config, { text: "User works with Python 3.13.", supersedes: "memory-test-unknown" }),
+    /steht in keiner Kontextdatei/
+  );
+
+  // Die Korrektur darf den Typ wechseln und landet dann in einer anderen Datei.
+  const revision = await remember(root, config, {
+    text: "User works with Python 3.13.",
+    type: "decision",
+    confidence: "High",
+    sourceId: "memory-test-new",
+    supersedes: "memory-test-old"
+  });
+  assert.equal(revision.status, "written");
+  assert.equal(revision.supersedes, "memory-test-old");
+  assert.equal(revision.supersededTarget, "05_System/Context/MEMORY.md");
+
+  const memoryText = await fs.readFile(memoryPath, "utf8");
+  assert.match(memoryText, /User works with Python 3\.11\./);
+  assert.match(memoryText, /- Status: überholt durch memory-test-new \(\d{4}-\d{2}-\d{2}\)/);
+  assert.match(await fs.readFile(decisionsPath, "utf8"), /- Ersetzt: memory-test-old/);
+
+  await assert.rejects(
+    remember(root, config, { text: "User works with Python 3.12.", supersedes: "memory-test-old" }),
+    /bereits überholt durch memory-test-new/
+  );
+
+  // Korrektur innerhalb derselben Datei: Der neue Eintrag darf beim Markieren nicht verloren gehen.
+  const sameFile = await remember(root, config, {
+    text: "User prefers ripgrep over grep.",
+    type: "fact",
+    sourceId: "memory-test-tool-old"
+  });
+  assert.equal(sameFile.status, "written");
+  const sameFileRevision = await remember(root, config, {
+    text: "User prefers fd over find.",
+    type: "fact",
+    sourceId: "memory-test-tool-new",
+    supersedes: "memory-test-tool-old"
+  });
+  assert.equal(sameFileRevision.status, "written");
+  const afterSameFile = await fs.readFile(memoryPath, "utf8");
+  assert.match(afterSameFile, /: User prefers fd over find\./);
+  assert.match(afterSameFile, /- Status: überholt durch memory-test-tool-new/);
+  assert.match(afterSameFile, /- Ersetzt: memory-test-tool-old/);
+
+  // Ein überholter Eintrag blockiert nicht mehr als Duplikat.
+  const again = await remember(root, config, {
+    text: "User works with Python 3.11.",
+    type: "fact",
+    confidence: "Medium"
+  });
+  assert.equal(again.status, "written");
+});
+
+test("remember rejects ambiguous supersedes references", async () => {
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "paios-memory-supersede-guard-"));
+  await fs.mkdir(path.join(root, "05_System", "Context"), { recursive: true });
+  const memoryPath = path.join(root, "05_System", "Context", "MEMORY.md");
+  await fs.writeFile(memoryPath, "# Memory\n", "utf8");
+  const config = defaultConfig(root);
+
+  await remember(root, config, { text: "Build runs on CI.", type: "fact", sourceId: "id-a" });
+  await remember(root, config, { text: "Deploy runs on CI.", type: "fact", sourceId: "id-b" });
+
+  // Ein Eintrag kann sich nicht selbst ersetzen.
+  await assert.rejects(
+    remember(root, config, { text: "Build runs locally.", sourceId: "id-a", supersedes: "id-a" }),
+    /kann sich nicht selbst ersetzen/
+  );
+
+  // Eine schon vergebene Source-ID würde den Verweis mehrdeutig machen.
+  await assert.rejects(
+    remember(root, config, { text: "Build runs locally.", sourceId: "id-b", supersedes: "id-a" }),
+    /ist bereits vergeben/
+  );
+
+  // Beide Ablehnungen dürfen die Datei nicht verändert haben.
+  const untouched = await fs.readFile(memoryPath, "utf8");
+  assert.equal(untouched.match(/- Source-ID: /g).length, 2);
+  assert.doesNotMatch(untouched, /Status: überholt durch/);
+  assert.doesNotMatch(untouched, /Build runs locally/);
+
+  // Ohne supersedes bleibt eine wiederverwendete Source-ID erlaubt (unverändertes Verhalten).
+  const plain = await remember(root, config, { text: "Tests run nightly.", type: "fact", sourceId: "id-b" });
+  assert.equal(plain.status, "written");
+});
+
+test("remember marks the outdated entry even when the correction is a duplicate", async () => {
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "paios-memory-supersede-dup-"));
+  await fs.mkdir(path.join(root, "05_System", "Context"), { recursive: true });
+  const memoryPath = path.join(root, "05_System", "Context", "MEMORY.md");
+  await fs.writeFile(memoryPath, "# Memory\n", "utf8");
+  const config = defaultConfig(root);
+
+  await remember(root, config, { text: "Editor is vim.", type: "fact", sourceId: "id-old" });
+  await remember(root, config, { text: "Editor is helix.", type: "fact", sourceId: "id-new" });
+
+  // Der neue Text existiert schon: kein zweiter Eintrag, die Korrektur greift trotzdem.
+  const result = await remember(root, config, { text: "Editor is helix.", type: "fact", supersedes: "id-old" });
+  assert.equal(result.status, "duplicate");
+  assert.equal(result.sourceId, "id-new");
+  assert.equal(result.supersedes, "id-old");
+
+  const text = await fs.readFile(memoryPath, "utf8");
+  assert.equal(text.match(/\): Editor is helix\./g).length, 1);
+  assert.match(text, /- Status: überholt durch id-new \(\d{4}-\d{2}-\d{2}\)/);
+  assert.match(text, /\): Editor is vim\./);
+});

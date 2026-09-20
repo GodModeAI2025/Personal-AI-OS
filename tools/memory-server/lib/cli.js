@@ -75,7 +75,8 @@ export async function main(argv, env) {
       confidence: args.confidence,
       source: args.source,
       evidence: args.evidence,
-      sourceId: args.sourceId
+      sourceId: args.sourceId,
+      supersedes: args.supersedes
     });
     console.log(JSON.stringify(result, null, 2));
     return;
@@ -205,7 +206,7 @@ Usage:
   paios-memory index
   paios-memory search "query" [--limit 8] [--json]
   paios-memory context --profile chatgpt|claude|gemini|grok [--query "..."] [--write]
-  paios-memory remember "text" [--type fact|preference|pattern|decision|learning] [--confidence Medium]
+  paios-memory remember "text" [--type fact|preference|pattern|decision|learning] [--confidence Medium] [--supersedes SOURCE-ID]
   paios-memory serve [--port 47777]
   paios-memory mcp
   paios-memory sync [--push --confirm-private] [--allow-public]
