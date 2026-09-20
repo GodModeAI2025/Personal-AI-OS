@@ -46,6 +46,12 @@ export async function remember(root, config, input) {
     throw new Error("remember abgelehnt: Eintrag enthält vermutlich ein Secret (API-Key, Token oder Private Key).");
   }
 
+  // Ein Eintrag kann sich nicht selbst ersetzen, und zwei Einträge mit derselben
+  // Source-ID machen jeden Verweis mehrdeutig. Beides vor dem Schreiben abfangen.
+  if (supersedes && supersedes === sourceId) {
+    throw new Error(`remember abgelehnt: ${sourceId} kann sich nicht selbst ersetzen.`);
+  }
+
   // Korrektur statt Löschung: Der überholte Eintrag bleibt stehen und bekommt einen Verweis.
   // Deshalb muss die Source-ID vor dem Schreiben auflösbar sein.
   const outdated = supersedes ? await locateBySourceId(root, supersedes) : null;
@@ -55,17 +61,27 @@ export async function remember(root, config, input) {
   if (outdated?.entry.supersededBy) {
     throw new Error(`remember abgelehnt: Eintrag ${supersedes} ist bereits überholt durch ${outdated.entry.supersededBy}. Ersetze den aktuellen Eintrag.`);
   }
+  if (supersedes && await locateBySourceId(root, sourceId)) {
+    throw new Error(`remember abgelehnt: Source-ID ${sourceId} ist bereits vergeben. Der Verweis auf die Korrektur wäre mehrdeutig.`);
+  }
 
   const existing = findEntry(await readIfExists(absoluteTarget), text);
   if (existing) {
-    // Gleiche Antwortform wie beim Schreiben; sourceId verweist auf den vorhandenen Eintrag.
-    // Ein angefragtes supersedes bleibt folgenlos, weil auch kein neuer Eintrag entsteht.
+    // Es entsteht kein neuer Eintrag, die Korrektur darf aber nicht stillschweigend
+    // ausfallen: Der überholte Eintrag wird auf den vorhandenen Eintrag verwiesen.
+    // Sonst bliebe genau der Widerspruch stehen, den supersedes auflösen soll.
+    if (outdated && existing.sourceId && existing.sourceId !== supersedes) {
+      await markSuperseded(outdated.absolute, supersedes, existing.sourceId, now.slice(0, 10));
+    }
     return {
       status: "duplicate",
       target,
       sourceId: existing.sourceId,
       type,
-      confidence
+      confidence,
+      ...(outdated && existing.sourceId && existing.sourceId !== supersedes
+        ? { supersedes, supersededTarget: outdated.target }
+        : {})
     };
   }
 

@@ -139,6 +139,8 @@ node tools/memory-server/bin/paios-memory.js remember "Nutzer arbeitet jetzt mit
 - Der neue Eintrag bekommt die Zeile `- Ersetzt: <alte Source-ID>`, der alte Eintrag die Zeile `- Status: überholt durch <neue Source-ID> (<Datum>)`. Gelöscht wird nichts: Eine zurückgenommene Aussage bleibt mit ihrem Beleg nachvollziehbar.
 - Die Source-ID wird in allen Zieldateien gesucht, eine Korrektur darf also den Typ wechseln (z. B. `fact` → `decision`).
 - Ist die Source-ID unbekannt oder der Eintrag schon überholt, schlägt der Aufruf mit einem Fehler fehl; die Fehlermeldung nennt den neueren Eintrag.
+- Abgelehnt wird auch, wenn ein Eintrag sich selbst ersetzen soll oder die neue Source-ID schon vergeben ist — beides würde den Verweis mehrdeutig machen.
+- Existiert der neue Text schon als gültiger Eintrag, entsteht kein zweiter. Der alte Eintrag wird trotzdem auf den vorhandenen Eintrag verwiesen, damit die Korrektur nicht stillschweigend ausfällt; die Antwort hat dann `"status": "duplicate"` und trotzdem `supersedes`.
 - Überholte Einträge zählen nicht mehr als Duplikat. Eine später wieder belegte Aussage kann also erneut aufgenommen werden.
 - Die Antwort enthält zusätzlich `supersedes` und `supersededTarget` (Datei des alten Eintrags).
 
