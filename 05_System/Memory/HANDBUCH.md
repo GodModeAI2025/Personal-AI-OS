@@ -228,6 +228,19 @@ node tools/memory-server/bin/paios-memory.js remember \
   --source "Projektentscheidung 2026-05-17"
 ```
 
+Eine Korrektur, wenn sich ein Eintrag als überholt herausstellt:
+
+```bash
+node tools/memory-server/bin/paios-memory.js remember \
+  "Nutzer bevorzugt ausführliche deutsche Antworten mit Beispielen." \
+  --type preference \
+  --confidence High \
+  --source "direktes Nutzerfeedback" \
+  --supersedes memory-2026-05-17-1747468800000
+```
+
+Der alte Eintrag wird dabei nicht gelöscht, sondern als überholt markiert (siehe Korrektur-Regel in `05_System/Context/MEMORY.md`). Die Source-ID des alten Eintrags steht in der Kontextdatei direkt unter dem Eintragstext.
+
 Wichtig: `remember` ist eine Schreiboperation. Bei unklaren Aussagen zuerst nachfragen.
 
 ### Nach Kontext suchen

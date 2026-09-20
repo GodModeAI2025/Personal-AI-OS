@@ -27,3 +27,13 @@ Dauerhafte Erkenntnisse dürfen nur übernommen werden, wenn sie mindestens eine
 - Sie sind eine persönliche Präferenz, die der Nutzer direkt bestätigt hat.
 
 Jede faktische Erkenntnis braucht Source-ID, Locator und kurzen Beleg. Unsichere Aussagen bleiben im Projekt, in `LEARNINGS.md` oder in einer Ressourcen-Notiz, aber nicht als gesichertes Langzeitgedächtnis.
+
+## Korrektur-Regel
+
+Stellt sich eine Erkenntnis später als falsch oder überholt heraus, wird sie **nicht gelöscht**, sondern ersetzt:
+
+- Der neue Eintrag verweist mit `Ersetzt: <alte Source-ID>` auf den alten.
+- Der alte Eintrag bleibt stehen und bekommt `Status: überholt durch <neue Source-ID> (<Datum>)`.
+- Nur Einträge ohne diese Status-Zeile gelten als aktuelles Langzeitgedächtnis.
+
+So bleibt nachvollziehbar, warum eine frühere Annahme galt und wodurch sie abgelöst wurde. Offene, noch nicht entschiedene Fälle gehören weiter in Abschnitt 3 (Widersprüche & Spannungen). Der Memory-Server unterstützt das über `remember --supersedes <Source-ID>`.
